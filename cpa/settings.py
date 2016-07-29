@@ -25,7 +25,13 @@ SECRET_KEY = 'svtpxawkg9li=r2-to-yg_s3h*p#+n)6z818!tu5#*$%4d*0)7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cpa','cpa.lan','campus1-iesi.ddns.net','172.16.111.91','201.27.31.24']
+ALLOWED_HOSTS = [
+    'cpa',
+    'cpa.lan',
+    'campus1-iesi.ddns.net',
+    '172.16.111.91',
+    '201.27.31.24'
+    ]
 
 
 # Application definition
@@ -37,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'favicon',
+    'core',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -75,10 +83,6 @@ WSGI_APPLICATION = 'cpa.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'iesi-cpa',
@@ -86,7 +90,7 @@ DATABASES = {
         'PASSWORD': 'xeon2accept',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-    }
+        }
 }
 
 
@@ -128,3 +132,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+FAVICON_PATH = STATIC_URL + 'images/favicon.png'
