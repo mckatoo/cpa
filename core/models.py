@@ -51,8 +51,12 @@ class OpcaoCoord(models.Model):
 
 
 class Avalprof(models.Model):
-    questao = models.CharField(max_length=200)
+    anoref = models.ForeignKey(Anoref)
+    semref = models.ForeignKey(Semref)
+    curso = models.ForeignKey(Curso)
+    semestre = models.ForeignKey(SemestreCurso)
     professor = models.ForeignKey(Professor)
+    questao = models.CharField(max_length=200)
 
 
 class OpcaoProf(models.Model):

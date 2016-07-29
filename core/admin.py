@@ -19,9 +19,14 @@ class AvalprofAdmin(admin.ModelAdmin):
     list_display = ('questao', 'professor')
 
 
+class CoordAdmin(admin.ModelAdmin):
+    list_display = ('curso', 'coordenador')
+    search_field = ('curso', 'coordenador')
+
+
 admin.site.register(Curso)
 admin.site.register(Professor)
-admin.site.register(Coordenador)
+admin.site.register(Coordenador, CoordAdmin)
 admin.site.register(Avalprof, AvalprofAdmin)
 admin.site.register(Avalcoord)
 admin.site.register(OpcaoProf)
