@@ -26,13 +26,22 @@ class Coordenador(models.Model):
 class Anoref(models.Model):
     anoref = models.IntegerField()
 
+    def __unicode__(self):
+        return unicode(self.anoref)
+
 
 class Semref(models.Model):
     semref = models.CharField(max_length=15)
 
+    def __unicode__(self):
+        return unicode(self.semref)
+
 
 class SemestreCurso(models.Model):
     semestre = models.CharField(max_length=15)
+
+    def __unicode__(self):
+        return unicode(self.semestre)
 
 
 class Avalcoord(models.Model):
