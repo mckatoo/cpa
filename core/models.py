@@ -22,6 +22,9 @@ class Coordenador(models.Model):
     curso = models.ForeignKey(Curso)
     coordenador = models.ForeignKey(Professor)
 
+    def __unicode__(self):
+        return unicode(self.coordenador)
+
 
 class Anoref(models.Model):
     anoref = models.IntegerField()

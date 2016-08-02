@@ -11,6 +11,11 @@ class OpcaoProfAdmin(admin.TabularInline):
     extra = 5
 
 
+class OpcaoCoordAdmin(admin.TabularInline):
+    model = OpcaoCoord
+    extra = 5
+
+
 class AvalprofAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['questao']}),
@@ -35,6 +40,33 @@ class AvalprofAdmin(admin.ModelAdmin):
         'curso',
         'questao',
         'professor',
+    ]
+
+
+class AvalcoordAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['questao']}),
+        ('Ano', {'fields': ['anoref']}),
+        ('Semestre', {'fields': ['semref']}),
+        ('Curso', {'fields': ['curso']}),
+        ('Semestre do Curso', {'fields': ['semestre']}),
+        ('Coordenador', {'fields': ['coordenador']}),
+    ]
+    inlines = [OpcaoCoordAdmin]
+    list_display = (
+        'anoref',
+        'semref',
+        'curso',
+        'semestre',
+        'coordenador',
+        'questao',
+        )
+    list_filter = [
+        'anoref',
+        'semref',
+        'curso',
+        'questao',
+        'coordenador',
     ]
 
 
@@ -66,6 +98,6 @@ admin.site.register(SemestreCurso, SemestreCursoAdmin)
 admin.site.register(Professor)
 admin.site.register(Coordenador, CoordAdmin)
 admin.site.register(Avalprof, AvalprofAdmin)
-admin.site.register(Avalcoord)
+admin.site.register(Avalcoord, AvalcoordAdmin)
 admin.site.register(OpcaoProf)
 admin.site.register(OpcaoCoord)
