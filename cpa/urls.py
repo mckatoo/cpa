@@ -19,5 +19,8 @@ import core.views
 
 urlpatterns = [
     url(r'^$', core.views.index),
+    url(r'^(?P<id>\d+)/$', core.views.visualizar),
+    url(r'^(?P<id>\d+)/resultado/$', core.views.resultado),
+    url(r'^(?P<id>\d+)/votar/$', core.views.votar),
     url(r'^admin/', admin.site.urls),
 ]
