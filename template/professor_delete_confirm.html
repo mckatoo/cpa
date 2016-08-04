@@ -1,0 +1,21 @@
+{% extends 'pages/base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block title %}
+    Apagar Professor
+{% endblock %}
+
+{% block navbar-brand %}
+    <img src={% static "img/navbar-brand.png" %} alt="IESI - Comissão Própria de Avaliação" />
+{% endblock %}
+
+{% block page-header %}Apagar Professor{% endblock %}
+
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <p>Você tem certeza que quer apagar {{object.nome}}</p>
+    <button type="submit" class="btn btn-danger">Tenho certeza.</button>
+</form>
+{% endblock %}

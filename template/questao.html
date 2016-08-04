@@ -1,0 +1,39 @@
+{% extends 'pages/tables.html' %}
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block title %}
+    Lista de Questões
+{% endblock %}
+
+{% block navbar-brand %}
+    <img src={% static "img/navbar-brand.png" %} alt="IESI - Comissão Própria de Avaliação" />
+{% endblock %}
+
+{% block titletable %}
+    Lista de Questões
+    <div class="col-xs-12 col-md-2 pull-right pull-right-m">
+        <a href={% url 'quest_novo' %} class="btn btn-primary btn-xs">Novo</a>
+    </div>
+{% endblock %}
+
+{% block page-header %}
+    Questões
+{% endblock  %}
+
+{% block table %}
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>QUESTÕES</th>
+    </tr>
+</thead>
+<tbody>
+    {% for quest in questao %}
+        <tr class="odd gradeX">
+            <td><a href="#">{{ quest.id }}</a></td>
+            <td><a href="#">{{ quest.questao }}</a></td>
+        </tr>
+    {% endfor %}
+</tbody>
+{% endblock  %}

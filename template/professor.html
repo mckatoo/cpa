@@ -1,0 +1,39 @@
+{% extends 'pages/tables.html' %}
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block title %}
+    Lista de Professores
+{% endblock %}
+
+{% block navbar-brand %}
+    <img src={% static "img/navbar-brand.png" %} alt="IESI - Comissão Própria de Avaliação" />
+{% endblock %}
+
+{% block titletable %}
+    Lista de Professores
+    <div class="col-xs-12 col-md-2 pull-right pull-right-m">
+        <a href="{% url 'professor_create' %}" class="btn btn-primary btn-xs">Novo</a>
+    </div>
+{% endblock %}
+
+{% block page-header %}
+    Professores
+{% endblock  %}
+
+{% block table %}
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>NOME</th>
+    </tr>
+</thead>
+<tbody>
+    {% for prof in lista_prof %}
+        <tr class="odd gradeX">
+            <td><a href="{% url 'professor_update' prof.id %}">{{ prof.id }}</a></td>
+            <td><a href="{% url 'professor_update' prof.id %}">{{ prof.nome }}</a></td>
+        </tr>
+    {% endfor %}
+</tbody>
+{% endblock  %}

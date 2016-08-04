@@ -1,0 +1,24 @@
+{% extends 'pages/base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block title %}
+    Nova Questão
+{% endblock %}
+
+{% block navbar-brand %}
+    <img src={% static "img/navbar-brand.png" %} alt="IESI - Comissão Própria de Avaliação" />
+{% endblock %}
+
+{% block page-header %}Cadastrar Questão{% endblock %}
+
+{% block main %}
+<form method="POST">
+    {% csrf_token %}
+    {{form|bootstrap}}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <div class="col-xs-12 col-md-2 col-lg-2 pull-right pull-right-m">
+        <a href="{% url 'questoes' %}" class="btn btn-default">Voltar</a>
+    </div>
+</form>
+{% endblock %}

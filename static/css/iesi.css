@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+    .navbar-brand{
+        padding: 8px 10px;
+    }
+}
+
+.pull-right-m{
+    padding: 0px;
+    text-align: right;
+    width: 50%;
+}
