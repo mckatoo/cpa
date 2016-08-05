@@ -5,10 +5,11 @@ from .models import Avalprof
 
 
 def index(request):
-    aval = Avalprof.objects.all().order_by("id")
+    # aval = Avalprof.objects.all().order_by("id")
     # output = ', '.join([p.questao for p in aval])
     # return HttpResponse(output)
-    return render(request, 'questao.html', aval)
+    # return render(request, 'aval.html', aval)
+    return render(request, 'aval.html')
 
 
 def visualizar(request, id):
