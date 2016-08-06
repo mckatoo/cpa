@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 
 
@@ -29,8 +28,8 @@ class Coordenador(models.Model):
 class Anoref(models.Model):
     anoref = models.IntegerField()
 
-    def __unicode__(self):
-        return unicode(self.anoref)
+    def __str__(self):
+        return str(self.anoref)
 
 
 class Semref(models.Model):

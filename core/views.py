@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Avalprof
+from .models import Anoref
+# from .form import AvalprofForm
 
 
 def index(request):
-    # aval = Avalprof.objects.all().order_by("id")
-    # output = ', '.join([p.questao for p in aval])
-    # return HttpResponse(output)
-    # return render(request, 'aval.html', aval)
-    return render(request, 'aval.html')
+    data = {}
+    data['lista_anos'] = Anoref.objects.all()
+    return render(request, 'aval.html', data)
+    # aval = Avalprof.objects.all()
+    # form = AvalprofForm(request.POST or None, instance=aval)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('home')
+    # return render(request, 'aval.html', {'object': aval, 'form': form})
 
 
 def visualizar(request, id):

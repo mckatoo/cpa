@@ -1,4 +1,6 @@
 Django==1.9.8
+django-bootstrap-form==3.2.1
+django-bootstrap3==7.0.1
 django-favicon==0.1.2
 gunicorn==19.6.0
 PyMySQL==0.7.5
