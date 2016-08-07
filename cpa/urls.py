@@ -19,6 +19,7 @@ import core.views
 
 urlpatterns = [
     url(r'^$', core.views.index, name='home'),
+    url(r'^$', core.views.index2, name='home2'),
     url(r'^(?P<id>\d+)/$', core.views.visualizar),
     url(r'^(?P<id>\d+)/resultado/$', core.views.resultado),
     url(r'^(?P<id>\d+)/votar/$', core.views.votar),

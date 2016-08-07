@@ -23,6 +23,16 @@ def index(request):
     # return render(request, 'aval.html', {'object': aval, 'form': form})
 
 
+def index2(request, id):
+    data = {}
+    data['tela'] = 2
+    data['professor'] = Avalprof.objects.get()
+    data['lista_semref'] = Semref.objects.all()
+    data['lista_curso'] = Curso.objects.all()
+    data['lista_semestre'] = SemestreCurso.objects.all()
+    return render(request, 'aval.html', data)
+
+
 def visualizar(request, id):
     return HttpResponse("visualizar = %d" % int(id))
 

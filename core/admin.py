@@ -10,11 +10,37 @@ from core.models import Professor, \
 class OpcaoProfAdmin(admin.TabularInline):
     model = OpcaoProf
     extra = 5
+    list_display = (
+        'opcao',
+        'votos',
+        'avalprof',
+    )
 
 
 class OpcaoCoordAdmin(admin.TabularInline):
     model = OpcaoCoord
     extra = 5
+    list_display = (
+        'opcao',
+        'votos',
+        'avalcoord',
+    )
+
+
+class OpcaoProfAdm(admin.ModelAdmin):
+    list_display = (
+        'opcao',
+        'votos',
+        'avalprof_id',
+    )
+
+
+class OpcaoCoordAdm(admin.ModelAdmin):
+    list_display = (
+        'opcao',
+        'votos',
+        'avalcoord_id',
+    )
 
 
 class AvalprofAdmin(admin.ModelAdmin):
@@ -96,14 +122,18 @@ class SemestreCursoAdmin(admin.ModelAdmin):
     list_display = ('semestre',)
 
 
+class ProfessorAdmin(admin.ModelAdmin):
+    list_display = ('professor',)
+
+
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(Anoref, AnorefAdmin)
 admin.site.register(Semref, SemrefAdmin)
 admin.site.register(SemestreCurso, SemestreCursoAdmin)
-admin.site.register(Professor)
+admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Coordenador, CoordAdmin)
 admin.site.register(Avalprof, AvalprofAdmin)
 admin.site.register(Avalcoord, AvalcoordAdmin)
-admin.site.register(OpcaoProf)
-admin.site.register(OpcaoCoord)
+admin.site.register(OpcaoProf, OpcaoProfAdm)
+admin.site.register(OpcaoCoord, OpcaoCoordAdm)
 admin.site.register(Questao, QuestaoAdmin)

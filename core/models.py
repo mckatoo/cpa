@@ -61,6 +61,9 @@ class Avalcoord(models.Model):
     coordenador = models.ForeignKey(Coordenador)
     questao = models.ForeignKey(Questao)
 
+    def __unicode__(self):
+        return unicode(self.id)
+
 
 class OpcaoCoord(models.Model):
     opcao = models.CharField(max_length=50)
@@ -75,6 +78,9 @@ class Avalprof(models.Model):
     semestre = models.ForeignKey(SemestreCurso)
     professor = models.ForeignKey(Professor)
     questao = models.ForeignKey(Questao)
+
+    def __unicode__(self):
+        return unicode(self.id)
 
 
 class OpcaoProf(models.Model):
