@@ -8,6 +8,7 @@ from .models import Anoref, Avalprof, Semref, \
 
 def index(request):
     data = {}
+    data['tela'] = 1
     data['lista_anos'] = Anoref.objects.all()
     data['lista_aval'] = Avalprof.objects.all()
     data['lista_semref'] = Semref.objects.all()
