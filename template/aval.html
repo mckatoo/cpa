@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {% load bootstrap %}
 {% block titulo %}
-    {{aval.curso}} - {{aval.semestre}}
+IESI - Comissão Própria de Avaliação
 {% endblock %}
 {% block main %}
 <div id="wrapper">
@@ -16,7 +16,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"></a>
+            <a class="navbar-brand" href={% url 'home' %}>
+                <img src={% static "images/navbar-brand.png" %} alt="IESI - Comissão Própria de Avaliação" />
+            </a>
         </div>
         <!-- /.navbar-header -->
 
@@ -27,10 +29,10 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> Administrador</a>
+                    <li><a href={% url 'admin:index' %}><i class="fa fa-user fa-fw"></i> Administrador</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                    <li><a href={% url 'admin:logout' %}><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -45,86 +47,76 @@
     </nav>
 
     <!-- Page Content -->
-    <div id="header-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">COMISSÃO PRÓPRIA DE AVALIAÇÃO</h1>
+    <div id="container theme-showcase">
+        <div class="container">
+            <h1 class="page-header">COMISSÃO PRÓPRIA DE AVALIAÇÃO</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label for="Anoref">Ano de Referência</label>
+                    <select name="Anoref" class="form-control">
+                        {% for anos in lista_anos %}
+                        <option>{{anos.anoref}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            DataTables Advanced Tables
-                            <label for="Anoref">Ano de Referência: </label>
-                            <select name="Anoref" class="form-control">
-                                {% for aval in lista_anos %}
-                                <option>{{aval.anoref}}</option>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <label for="Semref">Semestre de Referência</label>
+                    <select name="Semref" class="form-control">
+                        {% for semref in lista_semref %}
+                        <option>{{semref.semref}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="panel-heading">
+                    <label for="Curso">Curso</label>
+                    <select name="Curso" class="form-control">
+                        {% for curso in lista_curso %}
+                        <option>{{curso.curso}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <label for="Semestre">Semestre</label>
+                    <select name="Semestre" class="form-control">
+                        {% for semestre in lista_semestre %}
+                        <option>{{semestre.semestre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>Ano Ref</th>
+                                    <th>Semestre Ref</th>
+                                    <th>Curso</th>
+                                    <th>Semestre Curso</th>
+                                    <th>Professor</th>
+                                    <th>Questão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for aval in lista_aval %}
+                                <tr class="odd gradeX">
+                                    <td><a href="#">{{aval.anoref}}</a></td>
+                                    <td><a href="#">{{aval.semref}}</a></td>
+                                    <td><a href="#">{{aval.curso}}</a></td>
+                                    <td><a href="#">{{aval.semestre}}</a></td>
+                                    <td><a href="#">{{aval.professor}}</a></td>
+                                    <td><a href="#">{{aval.questao}}</a></td>
+                                </tr>
                                 {% endfor %}
-                            </select>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
-                                            <td class="center">A</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                            <div class="well">
-                                <h4>DataTables Usage Information</h4>
-                                <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-                                <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.table-responsive -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
+            <!-- /.col-lg-12 -->
         </div>
 
         <!-- /.container-fluid -->

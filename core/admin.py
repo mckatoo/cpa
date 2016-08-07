@@ -3,7 +3,8 @@ from django.contrib import admin
 from core.models import Professor, \
     Coordenador, Curso, Avalprof, \
     Avalcoord, OpcaoProf, OpcaoCoord, \
-    Anoref, Semref, SemestreCurso
+    Anoref, Semref, SemestreCurso, \
+    Questao
 
 
 class OpcaoProfAdmin(admin.TabularInline):
@@ -70,6 +71,10 @@ class AvalcoordAdmin(admin.ModelAdmin):
     ]
 
 
+class QuestaoAdmin(admin.ModelAdmin):
+    list_display = ('questao',)
+
+
 class CoordAdmin(admin.ModelAdmin):
     list_display = ('curso', 'coordenador')
     search_field = ('curso', 'coordenador')
@@ -101,3 +106,4 @@ admin.site.register(Avalprof, AvalprofAdmin)
 admin.site.register(Avalcoord, AvalcoordAdmin)
 admin.site.register(OpcaoProf)
 admin.site.register(OpcaoCoord)
+admin.site.register(Questao, QuestaoAdmin)

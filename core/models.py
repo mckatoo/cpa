@@ -40,10 +40,17 @@ class Semref(models.Model):
 
 
 class SemestreCurso(models.Model):
-    semestre = models.CharField(max_length=15)
+    semestre = models.CharField(max_length=20)
 
     def __unicode__(self):
         return unicode(self.semestre)
+
+
+class Questao(models.Model):
+    questao = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return unicode(self.questao)
 
 
 class Avalcoord(models.Model):
@@ -52,7 +59,7 @@ class Avalcoord(models.Model):
     curso = models.ForeignKey(Curso)
     semestre = models.ForeignKey(SemestreCurso)
     coordenador = models.ForeignKey(Coordenador)
-    questao = models.CharField(max_length=200)
+    questao = models.ForeignKey(Questao)
 
 
 class OpcaoCoord(models.Model):
@@ -67,7 +74,7 @@ class Avalprof(models.Model):
     curso = models.ForeignKey(Curso)
     semestre = models.ForeignKey(SemestreCurso)
     professor = models.ForeignKey(Professor)
-    questao = models.CharField(max_length=200)
+    questao = models.ForeignKey(Questao)
 
 
 class OpcaoProf(models.Model):

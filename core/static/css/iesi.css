@@ -1,0 +1,20 @@
+@media (min-width: 768px) {
+    .navbar-brand{
+        padding: 8px 10px;
+    }
+}
+
+.pull-right-m{
+    padding: 0px;
+    text-align: right;
+    width: auto;
+}
+
+.avalprof{
+    height: 250px !important;
+    width: auto;
+}
+
+.panel-footer-m{
+    text-align: right;
+}
