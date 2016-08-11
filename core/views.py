@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Anoref, Avalprof, Semref, \
-    Curso, SemestreCurso
+    Curso, SemestreCurso, OpcaoProf
 # from .form import AvalprofForm
 
 
@@ -14,6 +14,7 @@ def index(request):
     data['lista_semref'] = Semref.objects.all()
     data['lista_curso'] = Curso.objects.all()
     data['lista_semestre'] = SemestreCurso.objects.all()
+    data['opcao'] = OpcaoProf.objects.all()
     return render(request, 'aval.html', data)
     # aval = Avalprof.objects.all()
     # form = AvalprofForm(request.POST or None, instance=aval)
@@ -23,18 +24,35 @@ def index(request):
     # return render(request, 'aval.html', {'object': aval, 'form': form})
 
 
-def index2(request, id):
+# def index2(request, id):
+#     data = {}
+#     data['tela'] = 2
+#     data['professor'] = Avalprof.objects.get()
+#     data['lista_semref'] = Semref.objects.all()
+#     data['lista_curso'] = Curso.objects.all()
+#     data['lista_semestre'] = SemestreCurso.objects.all()
+#     return render(request, 'aval.html', data)
+
+
+def visualizar_coord(request, anoref, semref, curso, semestre):
+    return HttpResponse(
+        "visualizar = %d" %
+        int(anoref) %
+        int(semref) %
+        int(curso) %
+        int(semestre)
+    )
+
+
+def visualizar_prof(request, anoref, semref, curso, semestre):
     data = {}
     data['tela'] = 2
-    data['professor'] = Avalprof.objects.get()
+    data['lista_anos'] = Anoref.objects.all()
+    data['lista_aval'] = Avalprof.objects.all()
     data['lista_semref'] = Semref.objects.all()
     data['lista_curso'] = Curso.objects.all()
     data['lista_semestre'] = SemestreCurso.objects.all()
     return render(request, 'aval.html', data)
-
-
-def visualizar(request, id):
-    return HttpResponse("visualizar = %d" % int(id))
 
 
 def resultado(request, id):
