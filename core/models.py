@@ -46,8 +46,16 @@ class SemestreCurso(models.Model):
         return unicode(self.semestre)
 
 
+class lstQuestao(models.Model):
+    lstquestao = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return unicode(self.lstquestao)
+
+
 class Questao(models.Model):
-    questao = models.CharField(max_length=200)
+    questao = models.ForeignKey(lstQuestao)
+    data_publicacao = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return unicode(self.questao)
@@ -65,12 +73,6 @@ class Avalcoord(models.Model):
         return unicode(self.id)
 
 
-class OpcaoCoord(models.Model):
-    opcao = models.CharField(max_length=50)
-    votos = models.IntegerField()
-    avalcoord = models.ForeignKey(Avalcoord)
-
-
 class Avalprof(models.Model):
     anoref = models.ForeignKey(Anoref)
     semref = models.ForeignKey(Semref)
@@ -83,7 +85,7 @@ class Avalprof(models.Model):
         return unicode(self.id)
 
 
-class OpcaoProf(models.Model):
+class Opcao(models.Model):
     opcao = models.CharField(max_length=50)
     votos = models.IntegerField()
-    avalprof = models.ForeignKey(Avalprof)
+    questao = models.ForeignKey(Questao)

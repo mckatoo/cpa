@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Anoref, Avalprof, Semref, \
-    Curso, SemestreCurso, OpcaoProf
+    Curso, SemestreCurso, Opcao
 # from .form import AvalprofForm
 
 
@@ -14,7 +14,7 @@ def index(request):
     data['lista_semref'] = Semref.objects.all()
     data['lista_curso'] = Curso.objects.all()
     data['lista_semestre'] = SemestreCurso.objects.all()
-    data['opcao'] = OpcaoProf.objects.all()
+    data['opcao'] = Opcao.objects.all()
     return render(request, 'aval.html', data)
     # aval = Avalprof.objects.all()
     # form = AvalprofForm(request.POST or None, instance=aval)

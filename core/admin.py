@@ -2,23 +2,59 @@
 from django.contrib import admin
 from core.models import Professor, \
     Coordenador, Curso, Avalprof, \
-    Avalcoord, OpcaoProf, OpcaoCoord, \
+    Avalcoord, Opcao, \
     Anoref, Semref, SemestreCurso, \
-    Questao
+    Questao, lstQuestao
 
 
-class OpcaoProfAdmin(admin.TabularInline):
-    model = OpcaoProf
-    extra = 5
+class AvalprofAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Ano', {'fields': ['anoref']}),
+        ('Semestre', {'fields': ['semref']}),
+        ('Curso', {'fields': ['curso']}),
+        ('Semestre do Curso', {'fields': ['semestre']}),
+        ('Professor', {'fields': ['professor']}),
+    ]
     list_display = (
-        'opcao',
-        'votos',
-        'avalprof',
-    )
+        'anoref',
+        'semref',
+        'curso',
+        'semestre',
+        'professor',
+        )
+    list_filter = [
+        'anoref',
+        'semref',
+        'curso',
+        'professor',
+    ]
 
 
-class OpcaoCoordAdmin(admin.TabularInline):
-    model = OpcaoCoord
+class AvalcoordAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Ano', {'fields': ['anoref']}),
+        ('Semestre', {'fields': ['semref']}),
+        ('Curso', {'fields': ['curso']}),
+        ('Semestre do Curso', {'fields': ['semestre']}),
+        ('Coordenador', {'fields': ['coordenador']}),
+    ]
+    list_display = (
+        'anoref',
+        'semref',
+        'curso',
+        'semestre',
+        'coordenador',
+        )
+    list_filter = [
+        'anoref',
+        'semref',
+        'curso',
+        'coordenador',
+    ]
+
+
+class OpcaoTab(admin.TabularInline):
+    model = Opcao
     extra = 5
     list_display = (
         'opcao',
@@ -27,78 +63,23 @@ class OpcaoCoordAdmin(admin.TabularInline):
     )
 
 
-class OpcaoProfAdm(admin.ModelAdmin):
+class OpcaoAdmin(admin.ModelAdmin):
     list_display = (
         'opcao',
         'votos',
-        'avalprof_id',
+        'questao_id',
     )
 
 
-class OpcaoCoordAdm(admin.ModelAdmin):
-    list_display = (
-        'opcao',
-        'votos',
-        'avalcoord_id',
-    )
-
-
-class AvalprofAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None, {'fields': ['questao']}),
-        ('Ano', {'fields': ['anoref']}),
-        ('Semestre', {'fields': ['semref']}),
-        ('Curso', {'fields': ['curso']}),
-        ('Semestre do Curso', {'fields': ['semestre']}),
-        ('Professor', {'fields': ['professor']}),
-    ]
-    inlines = [OpcaoProfAdmin]
-    list_display = (
-        'anoref',
-        'semref',
-        'curso',
-        'semestre',
-        'professor',
-        'questao',
-        )
-    list_filter = [
-        'anoref',
-        'semref',
-        'curso',
-        'questao',
-        'professor',
-    ]
-
-
-class AvalcoordAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None, {'fields': ['questao']}),
-        ('Ano', {'fields': ['anoref']}),
-        ('Semestre', {'fields': ['semref']}),
-        ('Curso', {'fields': ['curso']}),
-        ('Semestre do Curso', {'fields': ['semestre']}),
-        ('Coordenador', {'fields': ['coordenador']}),
-    ]
-    inlines = [OpcaoCoordAdmin]
-    list_display = (
-        'anoref',
-        'semref',
-        'curso',
-        'semestre',
-        'coordenador',
-        'questao',
-        )
-    list_filter = [
-        'anoref',
-        'semref',
-        'curso',
-        'questao',
-        'coordenador',
-    ]
+class AvalcoordTab(admin.TabularInline):
+    model = Avalcoord
+    extra = 4
 
 
 class QuestaoAdmin(admin.ModelAdmin):
     list_display = ('questao',)
+    inlines = [OpcaoTab]
+    inlines = [AvalcoordTab]
 
 
 class CoordAdmin(admin.ModelAdmin):
@@ -134,6 +115,6 @@ admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Coordenador, CoordAdmin)
 admin.site.register(Avalprof, AvalprofAdmin)
 admin.site.register(Avalcoord, AvalcoordAdmin)
-admin.site.register(OpcaoProf, OpcaoProfAdm)
-admin.site.register(OpcaoCoord, OpcaoCoordAdm)
+admin.site.register(Opcao, OpcaoAdmin)
 admin.site.register(Questao, QuestaoAdmin)
+admin.site.register(lstQuestao)
