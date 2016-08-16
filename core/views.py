@@ -34,15 +34,17 @@ def index(request):
 #     return render(request, 'aval.html', data)
 
 
-def visualizar_coord(request, anoref, semref, curso, semestre):
+def visualizar_coord(request):
+    # import pdb
+    # pdb.set_trace()
     data = {}
     data['tela'] = 2
-    data['lista_coord'] = Anoref.objects.get(
-        anoref_id=anoref,
-        semref_id=semref,
-        curso_id=curso,
-        semestre_id=semestre
-        )
+    # data['lista_coord'] = Anoref.objects.get(
+    #     anoref_id=anoref,
+    #     semref_id=semref,
+    #     curso_id=curso,
+    #     semestre_id=semestre
+    #     )
     return render(request, 'aval.html', data)
 
 

@@ -18,8 +18,10 @@ from django.contrib import admin
 import core.views
 
 urlpatterns = [
-    url(r'^$', core.views.index, name='home'),
-    url(r'^(?P<anoref>\d+)/(?P<semref>\d+)/(?P<curso>\d+)/(?P<semestre>\d+)/$',
+    url(r'^$',
+        core.views.index,
+        name='home'),
+    url(r'^$',
         core.views.visualizar_coord,
         name='visualizar_coord'),
     url(r'^(?P<anoref>\d+)/(?P<semref>\d+)/(?P<curso>\d+)/(?P<semestre>\d+)/$',
