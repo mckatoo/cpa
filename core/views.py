@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Anoref, Avalprof, Semref, \
+from .models import Anoref, Aval, Semref, \
     Curso, SemestreCurso, Opcao
 # from .form import AvalprofForm
 
@@ -10,7 +10,7 @@ def index(request):
     data = {}
     data['tela'] = 1
     data['lista_anos'] = Anoref.objects.all()
-    data['lista_aval'] = Avalprof.objects.all()
+    data['lista_aval'] = Aval.objects.all()
     data['lista_semref'] = Semref.objects.all()
     data['lista_curso'] = Curso.objects.all()
     data['lista_semestre'] = SemestreCurso.objects.all()
@@ -35,20 +35,22 @@ def index(request):
 
 
 def visualizar_coord(request, anoref, semref, curso, semestre):
-    return HttpResponse(
-        "visualizar = %d" %
-        int(anoref) %
-        int(semref) %
-        int(curso) %
-        int(semestre)
-    )
+    data = {}
+    data['tela'] = 2
+    data['lista_coord'] = Anoref.objects.get(
+        anoref_id=anoref,
+        semref_id=semref,
+        curso_id=curso,
+        semestre_id=semestre
+        )
+    return render(request, 'aval.html', data)
 
 
 def visualizar_prof(request, anoref, semref, curso, semestre):
     data = {}
     data['tela'] = 2
     data['lista_anos'] = Anoref.objects.all()
-    data['lista_aval'] = Avalprof.objects.all()
+    data['lista_aval'] = Aval.objects.all()
     data['lista_semref'] = Semref.objects.all()
     data['lista_curso'] = Curso.objects.all()
     data['lista_semestre'] = SemestreCurso.objects.all()

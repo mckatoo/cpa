@@ -4,25 +4,17 @@ from django.db import models
 
 
 class Professor(models.Model):
-    professor = models.CharField(max_length=50)
+    professor = models.CharField(max_length=70)
 
     def __unicode__(self):
         return unicode(self.professor)
 
 
 class Curso(models.Model):
-    curso = models.CharField(max_length=50)
+    curso = models.CharField(max_length=70)
 
     def __unicode__(self):
         return unicode(self.curso)
-
-
-class Coordenador(models.Model):
-    curso = models.ForeignKey(Curso)
-    coordenador = models.ForeignKey(Professor)
-
-    def __unicode__(self):
-        return unicode(self.coordenador)
 
 
 class Anoref(models.Model):
@@ -46,6 +38,15 @@ class SemestreCurso(models.Model):
         return unicode(self.semestre)
 
 
+class Coordenador(models.Model):
+    curso = models.ForeignKey(Curso)
+    coordenador = models.ForeignKey(Professor)
+    semestre = models.ForeignKey(SemestreCurso)
+
+    def __unicode__(self):
+        return unicode(self.coordenador)
+
+
 class lstQuestao(models.Model):
     lstquestao = models.CharField(max_length=200)
 
@@ -61,23 +62,12 @@ class Questao(models.Model):
         return unicode(self.questao)
 
 
-class Avalcoord(models.Model):
+class Aval(models.Model):
     anoref = models.ForeignKey(Anoref)
     semref = models.ForeignKey(Semref)
     curso = models.ForeignKey(Curso)
     semestre = models.ForeignKey(SemestreCurso)
     coordenador = models.ForeignKey(Coordenador)
-    questao = models.ForeignKey(Questao)
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-
-class Avalprof(models.Model):
-    anoref = models.ForeignKey(Anoref)
-    semref = models.ForeignKey(Semref)
-    curso = models.ForeignKey(Curso)
-    semestre = models.ForeignKey(SemestreCurso)
     professor = models.ForeignKey(Professor)
     questao = models.ForeignKey(Questao)
 
@@ -87,5 +77,5 @@ class Avalprof(models.Model):
 
 class Opcao(models.Model):
     opcao = models.CharField(max_length=50)
-    votos = models.IntegerField()
+    votos = models.IntegerField(default=0)
     questao = models.ForeignKey(Questao)

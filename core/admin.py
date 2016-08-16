@@ -1,13 +1,12 @@
 # -*- coding: utf8 -*-
 from django.contrib import admin
 from core.models import Professor, \
-    Coordenador, Curso, Avalprof, \
-    Avalcoord, Opcao, \
-    Anoref, Semref, SemestreCurso, \
-    Questao, lstQuestao
+    Coordenador, Curso, Aval, \
+    Opcao, Anoref, Semref, \
+    SemestreCurso, Questao, lstQuestao
 
 
-class AvalprofAdmin(admin.ModelAdmin):
+class AvalAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Ano', {'fields': ['anoref']}),
         ('Semestre', {'fields': ['semref']}),
@@ -71,15 +70,14 @@ class OpcaoAdmin(admin.ModelAdmin):
     )
 
 
-class AvalcoordTab(admin.TabularInline):
-    model = Avalcoord
+class AvalTab(admin.TabularInline):
+    model = Aval
     extra = 4
 
 
 class QuestaoAdmin(admin.ModelAdmin):
     list_display = ('questao',)
-    inlines = [OpcaoTab]
-    inlines = [AvalcoordTab]
+    inlines = [AvalTab, OpcaoTab]
 
 
 class CoordAdmin(admin.ModelAdmin):
@@ -113,8 +111,7 @@ admin.site.register(Semref, SemrefAdmin)
 admin.site.register(SemestreCurso, SemestreCursoAdmin)
 admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Coordenador, CoordAdmin)
-admin.site.register(Avalprof, AvalprofAdmin)
-admin.site.register(Avalcoord, AvalcoordAdmin)
+admin.site.register(Aval, AvalAdmin)
 admin.site.register(Opcao, OpcaoAdmin)
 admin.site.register(Questao, QuestaoAdmin)
 admin.site.register(lstQuestao)
